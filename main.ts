@@ -38,6 +38,17 @@ if (width !== 1024 || height !== 1024) {
 if (statSync(src).size > 1024 * 1024) {
   throw new Error("entry.png exceeds the 1 MiB gate");
 }
+const IEND_LENGTH = Buffer.from([0x00, 0x00, 0x00, 0x00]);
+const IEND_TYPE = Buffer.from("IEND", "ascii");
+if (
+  bytes.length < 12 ||
+  !bytes.subarray(bytes.length - 12, bytes.length - 8).equals(IEND_LENGTH) ||
+  !bytes.subarray(bytes.length - 8, bytes.length - 4).equals(IEND_TYPE) ||
+  bytes.readUInt32BE(bytes.length - 4) !== 0xae426082
+) {
+  throw new Error("entry.png is truncated: missing IEND chunk at end of file");
+}
 
 mkdirSync(outDir, { recursive: true });
 copyFileSync(src, join(outDir, "entry.png"));
+console.log(`entry.png: 1024x1024, ${bytes.length} bytes -> ${join(outDir, "entry.png")}`);
