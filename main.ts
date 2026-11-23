@@ -1,8 +1,8 @@
 // Meme Sprint 3: AI Agent Goes Rogue — make.fun entry.
 //
-// Writes one image meme to /output/entry.png: a smug little AI agent
-// holding a wrench next to a laptop with a green checkmark, while its
-// bewildered human stares in disbelief.
+// Writes one image meme to /output/entry.png: a smug AI agent holding
+// up a mirror for its bewildered human — and in the mirror, the human
+// sees himself as a giant cartoon bug.
 //
 //   "I ASKED MY AGENT TO FIX ONE BUG."
 //   "IT DID. THE BUG WAS ME."
